@@ -1,0 +1,57 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package excelapi;
+
+/**
+ *
+ * @author matinal
+ */
+import com.sun.rowset.internal.Row;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import org.apache.poi.ss.usermodel.*;
+import org.apache.poi.xssf.streaming.SXSSFRow;
+import org.apache.poi.xssf.streaming.SXSSFSheet;
+import org.apache.poi.xssf.streaming.SXSSFWorkbook;
+
+/**
+ * hola
+ * @author juangu
+ */
+public class HolaMundoExcel {
+
+    /**
+     * @param args the command line arguments
+     */
+    public static void main(String[] args) {
+        
+        SXSSFWorkbook wb = new SXSSFWorkbook();
+        
+        SXSSFSheet sh = wb.createSheet("HOLA MUNDO");
+        
+        for (int i = 0; i < 10; i++) {
+            SXSSFRow row = sh.createRow(i);
+            for (int j = 0; j < 10; j++) {
+                Cell cell = row.createCell(j);
+                cell.setCellValue((char)('A'+j)+" "+(i+1));                
+            }
+        }
+        
+        try {
+            FileOutputStream out = new FileOutputStream("holaMundoExcel.xlsx");
+            wb.write(out);
+            out.close();                        
+        } catch (IOException ex) {
+            // Logger.getLogger(HolaMundoExcel.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println("ERROR al crear el archivo: "+
+                    ex.getLocalizedMessage());
+        } finally {
+            wb.dispose();
+        }
+         
+    }
+    
+}
