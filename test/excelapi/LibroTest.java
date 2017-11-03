@@ -124,14 +124,13 @@ public class LibroTest {
      */
     @Test
     public void testAddHoja() {
-        System.out.println("addHoja");
-        
+        System.out.println("addHoja");     
         int filas=20, columnas=30;
         Hoja hoja = new Hoja("pepe" , filas, columnas);
         
-        for (int i=0;i<filas; i++){
-            for(){
-            
+        for (int i=0;i<5;i++){
+            for (int j=0;j<6;j++){
+                hoja.setDato( "Hoja 1:"+i+","+j,i,j);
             }
         }
         
@@ -158,5 +157,25 @@ public class LibroTest {
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }
+    
+    /**
+     *
+     * @throws Exception
+     */
+    public void testSaveHoja() throws ExcelApiException {
+        System.out.println("loadSave");
+        
+    }
+    
+    
+    public void testLoadHoja() {
+        System.out.println("loadHoja");
+        String inputFile = "src/input/InputExcel.xlsx";
+        Libro instance = new Libro();
+        instance.loadHoja(inputFile);
+        System.out.println(instance);
+
+    }
+
     
 }

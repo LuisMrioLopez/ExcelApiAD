@@ -7,15 +7,24 @@ package excelapi;
 
 /**
  *
- * @author matinal
+ * @author Admin
  */
-public class ExcelApiException {
+public class ExcelApiException extends Exception {
 
     /**
-     * @param args the command line arguments
-     */
-    public static void main(String[] args) {
-        // TODO code application logic here
+     * Creates a new instance of <code>ExcelUtilException</code> without detail
+     * message.
+     */
+    public ExcelApiException() {
     }
-    
+
+    /**
+     * Constructs an instance of <code>ExcelUtilException</code> with the
+     * specified detail message.
+     *
+     * @param msg the detail message.
+     */
+    public ExcelApiException(String msg) {
+        super("ExcelAPI: "+msg);
+    }
 }

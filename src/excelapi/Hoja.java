@@ -7,36 +7,9 @@ package excelapi;
 
 /**
  *
- * @author matinal
+ * @author LuisMario
  */
-/*class Hoja {
 
-    Hoja(String pepe, int filas, int columnas) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-    
-    
-    
-    
-    public boolean compare(Hoja hoja){
-    boolean iguales = true;
-    
-    if(this.nColumnas==hoja.getColumnas() && this.nFilas==hoja.getFilas()) && this.nombre.equals(hoja.getNombre()){
-        for (int i= 0; i<this.nFilas; i++){
-            for (int i= 0; i<this.nColumnas; i++){
-                if(!this.datos[i][j].equals(hoja.getDato(i, j) )){
-                    iguales = false;
-                    break;
-                }
-        }
-            if(!iguales) break;
-        }
-    }else{
-        iguales = false;
-    }
-    return iguales;
-    }
-}*/
 
 /**
  * Esta clase almacena información del texto de
@@ -47,6 +20,8 @@ package excelapi;
 public class Hoja {
     private String[][] datos;
     private String nombre;
+    int nFilas;
+    int nColumnas;
 
     /**
      * Crea una hoja de cálculo nueva
@@ -54,6 +29,9 @@ public class Hoja {
     public Hoja() {
         this.datos = new String[5][5];
         this.nombre = "";
+        this.nColumnas=5;
+        this.nFilas=5;
+        
     }
     
     /**
@@ -64,11 +42,15 @@ public class Hoja {
     public Hoja(int nFilas, int nColumnas) {
         this.datos = new String[nFilas][nColumnas];
         this.nombre="";
+        this.nColumnas=nColumnas;
+        this.nFilas=nFilas;
     }
     
     public Hoja(String nombre, int nFilas, int nColumnas) {
         this.datos = new String[nFilas][nColumnas];
         this.nombre = nombre;
+        this.nFilas=nFilas;
+        this.nColumnas=nColumnas;
     }    
 
 
@@ -80,11 +62,52 @@ public class Hoja {
         this.datos[fila][columna] = dato;
     }
     
+    public int getNfilas() {
+        return nFilas;
+    }
+    
+    public void setDatos(String[][] datos) {
+        this.datos = datos;
+    }
+
+    public void setnFilas(int nFilas) {
+        this.nFilas = nFilas;
+    }
+
+    public void setnColumnas(int nColumnas) {
+        this.nColumnas = nColumnas;
+    }
+
+    public int getNcolumnas() {
+        return nColumnas;
+    }
+    
     public String getNombre(){
         return this.nombre;
     }
     
     public void setNombre(String nombre){
         this.nombre = nombre;
+    }
+    
+    public boolean compare(Hoja hoja){
+    boolean iguales = true;
+    
+   
+       if(this.nColumnas == hoja.getNcolumnas() && this.nFilas == hoja.getNfilas()){
+         for(int i=0;i <this.nFilas; i++){
+           for(int j=0;j<this.nColumnas;j++){
+             if(this.datos[i][j].equals(hoja.getDato(i, j))){
+             return false;
+
+             
+
+             }
+           }
+         }
+       }else{
+       iguales=false;
+       }
+       return iguales;
     }
 }
